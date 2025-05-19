@@ -1,0 +1,3 @@
+[submodule "app/zoom6"]
+	path = app/zoom6
+	url = https://github.com/ansulagrawal/zoom-clone.git

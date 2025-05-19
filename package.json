@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.19.2",
     "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
@@ -48,9 +49,7 @@
     "lucide-react": "^0.454.0",
     "next": "15.2.4",
     "next-themes": "^0.4.4",
-    "react": "^19",
     "react-day-picker": "8.10.1",
-    "react-dom": "^19",
     "react-hook-form": "^7.54.1",
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.0",
@@ -58,11 +57,16 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.6",
-    "zod": "^3.24.1"
+    "zod": "^3.24.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@stream-io/video-react-sdk": "^1.16.0"
+
   },
   "devDependencies": {
     "@googleworkspace/meet-addons": "^1.2.0",
     "@supabase/ssr": "^0.6.1",
+    "@types/jsrsasign": "^10.5.15",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -70,9 +74,13 @@
     "autoprefixer": "^10.4.20",
     "jsrsasign": "^11.1.0",
     "postcss": "^8",
+    "react": "^18.2.0",
+    "react-datepicker": "^8.3.0",
+    "react-dom": "^18.2.0",
     "server-only": "^0.0.1",
     "supabase": "^2.22.4",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5"
+    "typescript": "^5",
+    "ui": "^0.2.4"
   }
 }
