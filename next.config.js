@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: { remotePatterns: [{ protocol: 'https', hostname: 'img.clerk.com' }] },
+  assetPrefix: process.env.USE_PROXY ? "/zoom6" : "",
+
 };
 
-export default nextConfig;
+module.exports = nextConfig;
