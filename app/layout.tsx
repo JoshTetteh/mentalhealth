@@ -30,6 +30,17 @@ export default function RootLayout({
   return (
     <ClerkProvider>
         <html lang="en">
+           <head>
+          {/* ✅ Zoom Web SDK CSS */}
+          <link
+            rel="stylesheet"
+            href="https://source.zoom.us/2.19.0/css/bootstrap.css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://source.zoom.us/2.19.0/css/react-select.css"
+          />
+        </head>
           <body className={`min-h-screen bg-background font-sans antialiased ${inter.className}`}>
           <header className="flex justify-end items-center p-4 gap-4 h-16">
             <SignedOut>
