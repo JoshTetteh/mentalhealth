@@ -1,8 +1,8 @@
-import { createServerClient } from "@/app/utils/supabase/server"
+import { createClient } from "@/app/utils/supabase/server"
 import { NextResponse } from "next/server"
 
 export async function GET(request: Request) {
-  const supabase = createServerClient()
+  const supabase = await createClient()
   const url = new URL(request.url)
 
   // Get query parameters
