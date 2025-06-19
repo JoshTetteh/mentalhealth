@@ -1,8 +1,8 @@
-import { createServerClient } from "@/app/utils/supabase/server"
+import { createClient } from "@/app/utils/supabase/server"
 import { NextResponse } from "next/server"
 
 export async function POST(request: Request) {
-  const supabase = createServerClient()
+  const supabase = await createClient()
   const body = await request.json()
 
   const { appointmentId, provider, startTime, duration, title } = body
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
-  const supabase = createServerClient()
+  const supabase = await createClient()
   const url = new URL(request.url)
 
   const appointmentId = url.searchParams.get("appointmentId")

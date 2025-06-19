@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Heart } from "lucide-react"
-import { createClientClient } from "@/app/utils/supabase/client"
+import { createClient } from "@/app/utils/supabase/client"
 import { toast } from "@/hooks/use-toast"
 
 // For development mode when Supabase isn't configured
@@ -20,7 +20,7 @@ export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const supabase = createClientClient()
+  const supabase = createClient()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

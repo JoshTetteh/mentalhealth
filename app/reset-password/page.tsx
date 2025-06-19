@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Heart } from "lucide-react"
-import { createClientClient } from "@/app/utils/supabase/client"
+import { createClient } from "@/app/utils/supabase/client"
 import { toast } from "@/hooks/use-toast"
 
 // For development mode when Supabase isn't configured
@@ -24,7 +24,7 @@ export default function ResetPasswordPage() {
   const [isResetComplete, setIsResetComplete] = useState(false)
   const [hasResetCode, setHasResetCode] = useState(false)
   const router = useRouter()
-  const supabase = createClientClient()
+  const supabase = createClient()
 
   // Check if we have a reset token in the URL
   useEffect(() => {
