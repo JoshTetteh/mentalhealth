@@ -3,91 +3,76 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle, Heart } from "lucide-react"
 
-// Add imports for our video meeting components
-import { MeetingDetails } from "@/components/video-meeting/meeting-details"
-import type { VideoMeetingDetails } from "@/lib/video-conferencing/video-service"
-
-// Add a mock meeting for demonstration
-const mockMeeting: VideoMeetingDetails = {
-  provider: "zoom",
-  meetingId: "123456789",
-  password: "123456",
-  joinUrl: "https://zoom.us/j/123456789?pwd=123456",
-  startUrl: "https://zoom.us/s/123456789?pwd=123456",
-  startTime: new Date(Date.now() + 86400000).toISOString(), // Tomorrow
-  duration: 60,
+// Define the Whereby meeting type
+// Modify your confirmation page so that it matches the Whereby api not hardcoded values
+interface WherebyMeetingDetails {
+  provider: "whereby"
+  roomName: string
+  roomUrl: string
+  startTime: string
+  duration: number
 }
 
-export default function ConfirmationPage() {
-  const appointment = {
-    therapist: "Dr. Sarah Johnson",
-    date: "April 10, 2025",
-    time: "2:00 PM",
-    type: "virtual",
-  }
+// Add a mock meeting for demonstration - Whereby integration
+const realMeeting: WherebyMeetingDetails = {
+  provider: "whereby",
+  roomName: "consultation-room-123",
+  roomUrl: "https://triple-t-consult.whereby.com/test5e5e4679-2234-4766-8a36-5889b257e4a1",
+  startTime: new Date(Date.now() + 24 * 30 * 60 * 1000).toISOString(), // Tomorrow
+  duration: 30, // in minutes
+};
 
+// Simple meeting details component
+const MeetingDetails = ({ meeting }: { meeting: WherebyMeetingDetails }) => (
+  <Card className="w-full max-w-md">
+    <CardHeader>
+      <CardTitle>Video Meeting Details</CardTitle>
+      <CardDescription>Your Whereby consultation</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="space-y-2">
+        <p><strong>Room:</strong> {meeting.roomName}</p>
+        <p><strong>Start Time:</strong> {new Date(meeting.startTime).toLocaleString()}</p>
+        <p><strong>Duration:</strong> {meeting.duration} minutes</p>
+      </div>
+    </CardContent>
+    <CardFooter>
+      <Button asChild className="w-full">
+        <Link href={meeting.roomUrl} target="_blank" rel="noopener noreferrer">
+          Join Whereby Meeting
+        </Link>
+      </Button>
+    </CardFooter>
+  </Card>
+)
+
+// Main page component
+export default function BookingConfirmationPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="border-b">
-        <div className="container flex h-16 items-center justify-between py-4">
-          <Link href="/" className="flex items-center gap-2">
-            <Heart className="h-6 w-6 text-teal-600" />
-            <span className="text-xl font-bold">MindfulCare</span>
-          </Link>
+    <div className="container mx-auto py-8">
+      <div className="flex flex-col items-center space-y-6">
+        <div className="text-center">
+          <CheckCircle className="mx-auto h-16 w-16 text-green-500 mb-4" />
+          <h1 className="text-3xl font-bold">Booking Confirmed!</h1>
+          <p className="text-muted-foreground mt-2">
+            Thank you for your booking. Your consultation details are below.
+          </p>
         </div>
-      </header>
-      <main className="flex-1 container max-w-md py-12">
-        <Card className="text-center">
-          <CardHeader>
-            <div className="flex justify-center mb-4">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-teal-100">
-                <CheckCircle className="h-10 w-10 text-teal-600" />
-              </div>
-            </div>
-            <CardTitle className="text-2xl">Appointment Confirmed!</CardTitle>
-            <CardDescription>Your appointment has been successfully booked</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="bg-gray-50 p-4 rounded-md">
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Therapist:</span>
-                  <span>{appointment.therapist}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Date:</span>
-                  <span>{appointment.date}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Time:</span>
-                  <span>{appointment.time}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Session Type:</span>
-                  <span>{appointment.type}</span>
-                </div>
-              </div>
-            </div>
-            {appointment.type === "virtual" && (
-              <div className="mt-6">
-                <MeetingDetails meeting={mockMeeting} />
-              </div>
-            )}
-            <p>
-              A confirmation email has been sent to your email address with all the details and instructions for your
-              appointment.
-            </p>
-          </CardContent>
-          <CardFooter className="flex flex-col space-y-2">
-            <Button asChild className="w-full">
-              <Link href="/dashboard">Go to Dashboard</Link>
-            </Button>
-            <Button variant="outline" asChild className="w-full">
-              <Link href="/">Return to Home</Link>
-            </Button>
-          </CardFooter>
-        </Card>
-      </main>
+        
+        <MeetingDetails meeting={realMeeting} />
+        
+        <div className="text-center">
+          <p className="text-sm text-muted-foreground mb-4">
+            You'll receive an email confirmation shortly.
+          </p>
+          <Button asChild variant="outline">
+            <Link href="/">
+              <Heart className="mr-2 h-4 w-4" />
+              Back to Home
+            </Link>
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }

@@ -12,7 +12,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Calendar } from "@/components/ui/calendar"
 import { Heart, MapPin, Star, Video } from "lucide-react"
-import { VideoProviderSelector } from "@/components/video-meeting/video-provider-selector"
 import type { VideoProvider } from "@/lib/video-conferencing/video-service"
 
 const therapists = {
@@ -34,10 +33,11 @@ const therapists = {
 }
 
 export default function BookingPage({ params }: { params: { id: string } }) {
+  const id = Number(params.id)
+
   const therapist = therapists[params.id as keyof typeof therapists]
   const [date, setDate] = useState<Date | undefined>(new Date())
   const [sessionType, setSessionType] = useState("virtual")
-  const [videoProvider, setVideoProvider] = useState<VideoProvider | null>(null)
   const [bookingFor, setBookingFor] = useState("self")
   const [timeSlot, setTimeSlot] = useState("")
   const [step, setStep] = useState(1)
@@ -221,7 +221,6 @@ export default function BookingPage({ params }: { params: { id: string } }) {
 
                     {sessionType === "virtual" && (
                       <div className="space-y-2 mt-4">
-                        <VideoProviderSelector selectedProvider={videoProvider} onSelect={setVideoProvider} />
                       </div>
                     )}
 
@@ -374,10 +373,10 @@ export default function BookingPage({ params }: { params: { id: string } }) {
                   </Link>
                 )}
 
-                {step < 3 ? (
+                {step < 2 ? (
                   <Button
                     onClick={handleContinue}
-                    disabled={(step === 1 && !timeSlot) || (step === 1 && sessionType === "virtual" && !videoProvider)}
+                    disabled={step === 1 && !(timeSlot || !sessionType  )}
                   >
                     Continue
                   </Button>
