@@ -232,8 +232,7 @@ export default function AppointmentsPage() {
     const matchesDate = !date || appointment.date === format(date, "yyyy-MM-dd")
 
     return matchesSearch && matchesStatus && matchesType && matchesDate
-    \
-    'yyyy-MM-dd\')
+  
 
     return matchesSearch && matchesStatus && matchesType && matchesDate
   })

@@ -1,6 +1,5 @@
 import { createServerClient } from "@/app/utils/supabase/server"
 import { NextResponse } from "next/server"
-import { createMeeting, type VideoProvider } from "@/lib/video-conferencing/video-service"
 
 export async function POST(request: Request) {
   const supabase = createServerClient()
