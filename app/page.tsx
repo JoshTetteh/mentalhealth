@@ -26,14 +26,7 @@ export default function Home() {
               Resources
             </Link>
           </nav>
-          <div className="flex items-center gap-4">
-            <Link href="/login">
-              <Button variant="outline">Log in</Button>
-            </Link>
-            <Link href="/signup">
-              <Button>Sign up</Button>
-            </Link>
-          </div>
+          
         </div>
       </header>
       <main className="flex-1">
